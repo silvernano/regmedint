@@ -2305,16 +2305,16 @@ run;
 		%if &cvar^= %then %do;
 			%if &casecontrol^=true %then %do;
 proc reg data=data1 covout
-outest=out2(drop=_model_ _type_ _name_ _depvar_ &mvar)  ;
-model  &mvar=&avar &cvar ;
+outest=out2(drop=_model_ _type_ _name_ _depvar_ &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
+model  &mvar=&avar &cvar / sse;
 proc print;
 run;
 			%end;
 			%if &casecontrol=true %then %do;
 proc reg data=data1 covout
-outest=out2(drop=_model_ _type_ _name_ _depvar_  &mvar)  ;
+outest=out2(drop=_model_ _type_ _name_ _depvar_  &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
 where &yvar=0;
-model  &mvar=&avar &cvar;
+model  &mvar=&avar &cvar / sse;
 proc print;
 run;
 			%end;
@@ -2322,16 +2322,16 @@ run;
 		%if  &cvar= %then %do;
 			%if &casecontrol^=true %then %do;
 proc reg data=data1 covout
-outest=out2(drop=_model_ _type_ _name_ _depvar_  &mvar)  ;
-model  &mvar=&avar ;
+outest=out2(drop=_model_ _type_ _name_ _depvar_  &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
+model  &mvar=&avar / sse;
 proc print;
 run;
 			%end;
 			%if &casecontrol=true %then %do;
 proc reg data=data1 covout
-outest=out2(drop=_model_ _type_ _name_ _depvar_ &mvar)  ;
+outest=out2(drop=_model_ _type_ _name_ _depvar_ &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
 where &yvar=0;
-model  &mvar=&avar;
+model  &mvar=&avar / sse;
 proc print;
 run;
 			%end;
