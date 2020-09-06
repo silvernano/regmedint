@@ -2312,7 +2312,8 @@ model  &mvar=&avar &cvar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi L
 /* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
 data out2;
     set out2;
-    call symput("edf", first._EDF_);
+    if _N_ = 1 then
+        call symput("edf", _EDF_);
     drop _EDF_;
 proc print data=out2;
 run;
@@ -2327,7 +2328,8 @@ model  &mvar=&avar &cvar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi L
 /* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
 data out2;
     set out2;
-    call symput("edf", first._EDF_);
+    if _N_ = 1 then
+        call symput("edf", _EDF_);
     drop _EDF_;
 proc print data=out2;
 run;
@@ -2343,7 +2345,8 @@ model  &mvar=&avar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi Li's in
 /* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
 data out2;
     set out2;
-    call symput("edf", first._EDF_);
+    if _N_ = 1 then
+        call symput("edf", _EDF_);
     drop _EDF_;
 proc print data=out2;
 run;
@@ -2358,7 +2361,8 @@ model  &mvar=&avar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi Li's in
 /* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
 data out2;
     set out2;
-    call symput("edf", first._EDF_);
+    if _N_ = 1 then
+        call symput("edf", _EDF_);
     drop _EDF_;
 proc print data=out2;
 run;
