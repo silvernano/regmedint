@@ -2306,16 +2306,30 @@ run;
 			%if &casecontrol^=true %then %do;
 proc reg data=data1 covout
 outest=out2(drop=_model_ _type_ _name_ _depvar_ &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
-model  &mvar=&avar &cvar / sse;
-proc print;
+model  &mvar=&avar &cvar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi Li's input. */
+/* 2020-09-05 @kaz-yos extract  */
+/* error degree of freedom (EDF): sample size - number of parameters */
+/* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
+data out2;
+    set out2;
+    call symput("edf", first._EDF_);
+    drop _EDF_;
+proc print data=out2;
 run;
 			%end;
 			%if &casecontrol=true %then %do;
 proc reg data=data1 covout
 outest=out2(drop=_model_ _type_ _name_ _depvar_  &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
 where &yvar=0;
-model  &mvar=&avar &cvar / sse;
-proc print;
+model  &mvar=&avar &cvar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi Li's input. */
+/* 2020-09-05 @kaz-yos */
+/* error degree of freedom (EDF): sample size - number of parameters */
+/* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
+data out2;
+    set out2;
+    call symput("edf", first._EDF_);
+    drop _EDF_;
+proc print data=out2;
 run;
 			%end;
 		%end;
@@ -2323,16 +2337,30 @@ run;
 			%if &casecontrol^=true %then %do;
 proc reg data=data1 covout
 outest=out2(drop=_model_ _type_ _name_ _depvar_  &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
-model  &mvar=&avar / sse;
-proc print;
+model  &mvar=&avar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi Li's input. */
+/* 2020-09-05 @kaz-yos */
+/* error degree of freedom (EDF): sample size - number of parameters */
+/* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
+data out2;
+    set out2;
+    call symput("edf", first._EDF_);
+    drop _EDF_;
+proc print data=out2;
 run;
 			%end;
 			%if &casecontrol=true %then %do;
 proc reg data=data1 covout
 outest=out2(drop=_model_ _type_ _name_ _depvar_ &mvar _IN_ _P_ _SSE_ _RSQ_)  ;
 where &yvar=0;
-model  &mvar=&avar / sse;
-proc print;
+model  &mvar=&avar / sse; /* 2020-09-04 @kaz-yos added / sse based on Yi Li's input. */
+/* 2020-09-05 @kaz-yos */
+/* error degree of freedom (EDF): sample size - number of parameters */
+/* https://www.lexjansen.com/nesug/nesug04/pm/pm13.pdf */
+data out2;
+    set out2;
+    call symput("edf", first._EDF_);
+    drop _EDF_;
+proc print data=out2;
 run;
 			%end;
 		%end;
